@@ -18,10 +18,11 @@ tda_filter <- function(data,
     "unif_length" = unif_length_cover(min(var), max(var), n_int = n_int, overlap = overlap),
     "unif_weight" = unif_weight_cover(var, n_int = n_int, overlap = overlap)
   )
+  groups <- assign_cover(var, cover)
   li <- list(
-    groups = assign_cover(var, cover),
+    groups = groups,
     cover = cover, filter = data.frame(svd = var),
-    stats = data.frame(count = sapply(filter$groups, length))
+    stats = data.frame(id = 1:length(groups), count = sapply(groups, length))
   )
   attr(li, "class") <- "tda_filter"
   li

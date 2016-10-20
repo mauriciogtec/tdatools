@@ -18,7 +18,10 @@ cluster <- function(filter, data, control = list(k = 3)) {
     li
   })
   filter$groups <- do.call("c", cluster_sublists)
-  filter$stats <- data.frame(count = sapply(filter$groups, length))
+  filter$stats <- data.frame(
+    id = 1:length(filter$groups),
+    count = sapply(filter$groups, length)
+  )
   filter
 }
 

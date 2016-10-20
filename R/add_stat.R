@@ -1,4 +1,4 @@
-add_stat <- function(filter, funs, data) {
+add_stat <- function(filter, funs, data, rm_incomplete = TRUE) {
   if (!is.list(funs)) {
     funs <- list(funs)
   }
@@ -38,7 +38,7 @@ add_stat <- function(filter, funs, data) {
     do.call("rbind", inner_list)
   })
   d <- do.call("cbind", outer_list)
-  if (!keep_incomplete) {
+  if (rm_incomplete) {
     incomplete <- apply(d, 2, function(x) any(is.na(x)))
     d <- d[ ,!as.logical(incomplete), drop = FALSE]
   }

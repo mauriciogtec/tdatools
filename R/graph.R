@@ -1,5 +1,5 @@
-tda_edges <- function(tda_filter) {
-  groups <- tda_filter$groups
+edge_info <- function(filter) {
+  groups <- filter$groups
   n <- length(groups)
   info <- data.frame()
   for (i in 1:(n-1)) {
@@ -17,19 +17,14 @@ tda_edges <- function(tda_filter) {
   info
 }
 
-tda_nodes <- function(tda_filter) {
-  n <- length(tda_filter$groups)
-  count <- sapply(tda_filter$groups, length)
-  size <- count / sum(count)
-  info <- data.frame(
-    node = 1:n,
-    size = size
-  )
-  if(!is.null(tda_filter$filter_stats)) {
-    info <- cbind(info, tda_filter$data_stats)
-  }
-  if(!is.null(tda_filter$data_stats)) {
-    info <- cbind(info, tda_filter$data_stats)
-  }
-  info
-}
+# tda_nodes <- function(filter) {
+#   n <- length(filter$groups)
+#   count <- sapply(filter$groups, length)
+#   size <- count / sum(count)
+#   info <- data.frame(
+#     node = 1:n,
+#     size = size
+#   )
+#   info
+# }
+
